@@ -1,0 +1,14 @@
+// {
+//     "emmet.excludeLanguages": [
+
+//         "markdown"
+//     ]
+  
+// }
+
+{
+    "emmet.includeLanguages": {
+        "twig": "html",
+    },
+    "emmet.triggerExpansionOnTab": true
+}
