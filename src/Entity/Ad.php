@@ -7,9 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *      "title",
+ *      message="Une annonce possède déjà le même titre"
+ * )
  */
 class Ad
 {
@@ -22,41 +30,70 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min=10,
+     *      max=255,
+     *      minMessage="Votre titre doit comporter au moins 10 caractères",
+     *      maxMessage="Votre titre doit comporter au maximum 255 caractères"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $slug;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Positive(
+     *      message ="Le prix de votre annonce doit être positif"
+     * )
+     * 
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min=10,
+     *      minMessage="Votre introduction doit comporter au moins 10 caractères"
+     * )
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min=100,
+     *      minMessage="Votre contenu doit comporter au moins 100 caractères"
+     * )
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url(
+     *      message="l'url '{{ value }}' n'est pas valide"
+     * )
+     * 
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Positive(
+     *      message ="Le nombre de chambre doit être positif"
+     * )
+     * 
      */
     private $rooms;
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="ad", orphanRemoval=true)
+     * @Assert\Valid()
+     * 
      */
     private $images;
 
@@ -64,6 +101,8 @@ class Ad
     {
         $this->images = new ArrayCollection();
     }
+
+
 
     /**
      * Permet d'initailiser le slug !
