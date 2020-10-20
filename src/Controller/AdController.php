@@ -6,9 +6,10 @@ use App\Entity\Ad;
 use App\Form\AdType;
 use App\Entity\Image;
 use App\Repository\AdRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Monolog\Handler\HandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler;
@@ -33,7 +34,7 @@ class AdController extends AbstractController
      * Permet de crée une annonce
      * 
      * @Route("/ads/new", name="ads_create")
-     * @return response
+     * @return Response
      * 
      */
     public function create(Request $request, EntityManagerInterface $manager) {
@@ -57,7 +58,7 @@ class AdController extends AbstractController
                 'Votre annonce a bien été ajouter!'
             );
             
-            return $this->redirectToRoute('ads_show', [
+            return $this->redirectToRoute('/ad', [
                 'slug' => $ad->getSlug()
                 ]);
             }               
@@ -69,7 +70,7 @@ class AdController extends AbstractController
     /**
      * Permet de modifier une annonce
      * @Route("/ads/{slug}/edit", name="ads_edit")
-     * @return response
+     * @return Response
      */
     public function edit(Request $request, Ad $ad, EntityManagerInterface $manager) {
 
