@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
             $genre = $faker->randomElement($genres);
 
             $picture = "https://randomuser.me/api/portraits/";
-            $pictureId = $faker->numberBetween(1, 99) . 'jpg';
+            $pictureId = $faker->numberBetween(1, 99) .'.jpg';
 
             if($genre == "male") {
                 $picture = $picture . 'men/' . $pictureId;
@@ -59,7 +59,10 @@ class AppFixtures extends Fixture
 
             $title = $faker->sentence(6);
             $introduction = $faker->paragraph(2);
-            $image = $faker->imageUrl(1000,350);
+            $backgroundColor = trim($faker->safeHexcolor, '#');
+            $foregroundColor = trim($faker->safeHexcolor, '#');
+            $imageR = "https://dummyimage.com/600x400/" . $backgroundColor . "/". $foregroundColor ."&text=" . "Appartement" ;
+            $imageP = "https://dummyimage.com/600x400/" . $backgroundColor . "/". $foregroundColor ."&text=" . "photos appartement" ;
             $content = "<p>" .join("</p><p>",$faker->paragraphs(6))."</p>";
 
             $user = $users[mt_rand(0, count($users) -1)];
@@ -68,18 +71,18 @@ class AppFixtures extends Fixture
                 -> setPrice(mt_rand(35,250))
                 -> setIntroduction($introduction)
                 -> setContent($content)
-                -> setCoverImage($image)
+                -> setCoverImage($imageR)
                 -> setRooms(mt_rand(1,8))
                 -> setAuthor($user);
 
             for($j=1; $j<=mt_rand(2,5); $j++) {
                 $image = new Image();
 
-                $image->setUrl($faker->imageUrl())
+                $image->setUrl($imageP)
                       ->setCaption($faker->sentence())
                       ->setAd($ad);
 
-                      $manager->persist($image);
+                $manager->persist($image);
             }
 
             $manager->persist($ad);

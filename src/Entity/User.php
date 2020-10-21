@@ -83,6 +83,10 @@ class User implements UserInterface
      */
     private $email;
 
+    public function fullname() {
+        return "{$this->firstName} {$this->lastName}";
+    }
+
     public function __construct()
     {
         $this->ads = new ArrayCollection();

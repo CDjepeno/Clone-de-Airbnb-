@@ -49,6 +49,8 @@ class AdController extends AbstractController
                 $image->setAd($ad);
                 $manager->persist($image);
             }
+            // Récupération de l'utilisateur
+            $ad->setAuthor($this->getUser());
 
             $manager->persist($ad); 
             $manager->flush($ad); 
@@ -58,7 +60,7 @@ class AdController extends AbstractController
                 'Votre annonce a bien été ajouter!'
             );
             
-            return $this->redirectToRoute('/ad', [
+            return $this->redirectToRoute('ads_show', [
                 'slug' => $ad->getSlug()
                 ]);
             }               
@@ -116,7 +118,7 @@ class AdController extends AbstractController
     public function show(Ad $ad) {
         
         return $this->render('ad/show.html.twig',[
-            'ad' => $ad
+            'ad' => $ad,
             ]);
     }
 

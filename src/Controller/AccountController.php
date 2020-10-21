@@ -109,6 +109,8 @@ class AccountController extends AbstractController
      * Permet d'afficher de gerer le formulaire de modification de mot de passe
      *
      * @Route("/password-update/account", name="password_update_account")
+     * 
+     * @return Response
      */
     public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
         $password = new PasswordUpdate;
@@ -137,7 +139,6 @@ class AccountController extends AbstractController
                     "success",
                     "Votre mot de passe a bien été modifié"
                 );
-
                 return $this->redirectToRoute("homepage");
             }
         }
@@ -145,6 +146,19 @@ class AccountController extends AbstractController
         return $this->render("account/passwordUpdate.html.twig",[
             "form" => $form->createView(),
             "user" => $user
+        ]);
+    }
+
+    /**
+     * Permet de renvoyer vers l'annonce de l'utilisateur connecter
+     *
+     * @Route("/account", name="account_user")
+     * 
+     * @return Response
+     */
+    public function account() {
+        return $this->render('user/index.html.twig',[
+            "user" => $this->getUser()
         ]);
     }
 
