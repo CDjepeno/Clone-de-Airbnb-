@@ -24,11 +24,13 @@ class AccountController extends AbstractController
      * 
      * @Route("/login", name="login_account")
      * 
+     * @param AutheticationUtils $utils
+     * 
      * @return Response
      */
     public function login(AuthenticationUtils $utils)
     {
-        $error = $utils->getLastAuthenticationError();
+        $error    = $utils->getLastAuthenticationError();
         $username = $utils->getLastUsername();
 
         return $this->render('account/login.html.twig', [
@@ -42,6 +44,10 @@ class AccountController extends AbstractController
      * Permet d'afficher et de gérer le formulaire d'enregistrement
      *
      * @Route("/register", name="register_account")
+     * 
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param UserPasswordEncoderInterface $encoder
      * 
      * @return Response
      */
@@ -78,7 +84,10 @@ class AccountController extends AbstractController
      * Permet d'afficher et de gerer le formulaire de modification d'utilisateur
      *
      * @Route("/profile-update/account", name="profile_update_account")
+     * 
      * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param EntityManagerInterface $manager
      * 
      * @return Response
      */
@@ -113,17 +122,19 @@ class AccountController extends AbstractController
      * @Route("/password-update/account", name="password_update_account")
      * 
      * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param UserPasswordEncoderInterface $encoder
      * 
      * @return Response
      */
     public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
         $password = new PasswordUpdate;
-
-        $form = $this->createForm(PasswordUpdateType::class, $password);
+        $form     = $this->createForm(PasswordUpdateType::class, $password);
 
         $form->handleRequest($request);
 
-        $user = $this->getUser();
+        $user     = $this->getUser();
 
         if($form->isSubmitted() && $form->isValid()) {
 
@@ -132,7 +143,7 @@ class AccountController extends AbstractController
             } else {
                 $newPassword = $password->getNewPassword();
 
-                $hash = $encoder->encodePassword($user,$newPassword);
+                $hash        = $encoder->encodePassword($user,$newPassword);
 
                 $user->setHash($hash);
 
@@ -173,7 +184,7 @@ class AccountController extends AbstractController
      * 
      * @Route("/account/bookings", name="account_bookings")
      *
-     * @return void
+     * @return Response
      */
     public function bookings() {
         return $this->render('account/bookings.html.twig');
@@ -184,6 +195,7 @@ class AccountController extends AbstractController
      * Permet de ce déconnecter 
      *
      * @Route("/logout", name="logout_account")
+     * 
      * @return void
      */
     public function logout() {

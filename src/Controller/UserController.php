@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     /**
-     * Permet de renvoyer
+     * Permet de renvoyer vers le profil de l'utilisateur
      * 
      * @Route("/user/{slug}", name="user_show")
      */

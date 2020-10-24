@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="container">
         <h1>Réserver pour l'annonce : {{ ad.title }}</h1>
         <p>Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullname }}</strong></p>
@@ -28,15 +29,12 @@
             <h2 class="mt-3">Vous avez un commentaire ?</h2>
             {{form_row(form.comment)}}
         </div>
-
-
         <h2>Vous avez terminé !</h2>
         <p>Vacances de rêve ? Hébergement pour le boulot ? Peu importe, on est avec vous !</p>
 
         <button type="submit" class="btn btn-success">Je reserve !</button>
 
         {{form_end(form)}}
-
     </div>
 {% endblock %}
 

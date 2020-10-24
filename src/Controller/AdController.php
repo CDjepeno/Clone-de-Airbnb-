@@ -20,7 +20,12 @@ class AdController extends AbstractController
 {
     /**
      * Récupération de tous les appartements dans la bdd
+     * 
      * @Route("/ad", name="ads_index")
+     * 
+     * @param AdRepository $repo
+     * 
+     * @return Response
      */
     public function index(AdRepository $repo)
     {
@@ -36,12 +41,16 @@ class AdController extends AbstractController
      * Permet de crée une annonce
      * 
      * @Route("/ads/new", name="ads_create")
+     * 
      * @IsGranted("ROLE_USER", message="vous ne pouvez pas crée d'annonce vous n'ètes pas un utilisateur")
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * 
      * @return Response
      * 
      */
     public function create(Request $request, EntityManagerInterface $manager) {
-        $ad = new Ad();
+        $ad   = new Ad();
         $form = $this->createForm(AdType::class, $ad);
         
         $form->handleRequest($request);
@@ -74,9 +83,13 @@ class AdController extends AbstractController
 
     /**
      * Permet de modifier une annonce
+     * 
      * @Route("/ads/{slug}/edit", name="ads_edit")
      * 
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce ne vous appartient pas, vous ne pouvez pas la modifier")
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param Ad $ad
      * 
      * @return Response
      */
@@ -120,6 +133,7 @@ class AdController extends AbstractController
      * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="vous n'avez pas le droit d'acceder a cette recource")
      * @param Ad $ad
      * @param EntityManagerInterface $manager
+     * 
      * @return Response
      */
     public function delete(Ad $ad, EntityManagerInterface $manager) {
@@ -140,6 +154,7 @@ class AdController extends AbstractController
      * Permet d'afficher une seule annonce
      *
      * @Route("/ads/{slug}", name="ads_show")
+     * 
      * @param [type] $slug
      *
      * @return Response
