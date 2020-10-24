@@ -6,7 +6,7 @@
 {% set ad = booking.ad %}
 {% set author = ad.author %}
 <div class="container">
-    <h1>Votre réservation (n°{{ booking.id }})</h1>
+    <h1 class="my-4">Votre réservation (n°{{ booking.id }})</h1>
     {% if app.request.query.get('success') %}
         <div class="container">
            <div class="alert alert-success">
