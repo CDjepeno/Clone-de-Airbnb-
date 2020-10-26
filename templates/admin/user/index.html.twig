@@ -1,0 +1,40 @@
+{% extends '/admin/base.html.twig' %}
+
+{% block title %}Administration des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1 class="my-5">Administration des utilisateurs</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>photo</th>
+                <th>email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            {# <pre>
+                {{ dump(user.id) }}
+            </pre> #}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.firstname}}</td>
+                <td><img src="{{user.picture}}" alt="avatar de {{user.firstname}}"></td>
+                <td>{{user.username}}</td>
+                <td>
+                    <a href="{{path('admin_user_edit',{'id': user.id})}}" class="badge badge-primary rounded"><i class="fi-xnsuxl-edit-solid" ></i></a>
+                    <a href="{{path('admin_user_delete',{'id': user.id})}}" class="badge badge-danger rounded"><i class="fi-xnsuxl-trash-bin"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

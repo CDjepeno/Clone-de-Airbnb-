@@ -162,7 +162,6 @@ class Ad
         $sum = array_reduce($this->comments->toArray(),function($total, $comment) {
             return $total + $comment->getRating();
         }, 0);
-
         // faire la moyenne
         if(count($this->comments) > 0) {
             return $sum / count($this->comments);  

@@ -21,6 +21,11 @@ img.img-annonces {
     width: 7rem;
 }
 
+.avatar-micro {
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
 .avatar-mini {
     max-width: 3rem;
     max-height: 3rem;

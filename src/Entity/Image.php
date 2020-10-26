@@ -21,7 +21,7 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Url()
+     * @Assert\Valid()
      */
     private $url;
 

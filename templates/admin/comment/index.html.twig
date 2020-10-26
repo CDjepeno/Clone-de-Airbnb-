@@ -1,0 +1,39 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des commentaires{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5">Administration des commentaires</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Auteur</th>
+                    <th>Commentaire</th>
+                    <th class="text-center">Note</th>
+                    <th>Annonce</th>
+                    <th></th>
+                </tr>
+            </thead>
+                {% dump(comments) %}
+            <tbody>
+                {% for comment in comments %}
+                <tr>
+                    <td>{{comment.id}}</td>
+                    <td>{{comment.createdAt | date('d-m-Y h:i')}}</td>
+                    <td><img src="{{comment.author.picture}}" class="avatar avatar-micro p-1" alt="avatar de {{comment.author.fullname}}"> {{comment.author.fullname}}</td>
+                    <td>{{comment.content}}</td>
+                    <td class="text-center"><span class="badge badge-primary">{{comment.rating}}</span></td>
+                    <td>{{comment.content}}</td>
+                    <td>
+                        <a href="{{path('admin_comment_edit', {'id' : comment.id}) }}" class="badge badge-primary rounded"><i class="fi-xnsuxl-edit-solid"></i></a>
+                        <a href="{{path('admin_comment_delete', {'id' : comment.id}) }}" class="badge badge-danger rounded"><i class="fi-xnsuxl-trash-bin"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>   
+        </table>
+    </div>
+{% endblock %}

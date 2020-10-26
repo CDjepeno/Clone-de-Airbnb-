@@ -10,5 +10,20 @@
     "emmet.includeLanguages": {
         "twig": "html",
     },
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "database": "symbnb",
+            "username": "root@localhost",
+            "name": "root"
+        }
+    ]
 }
