@@ -6,37 +6,37 @@
 
 <div class="container-fluid">
     <h1 class="my-5">Gestion des annonces</h1>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Titre</th>
-                    <th>Auteur</th>
-                    <th class="text-center">Réservation</th>
-                    <th class="text-center">Note</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for ad in ads %}
-                <tr>
-                    <td>{{ad.id}}</td>
-                    <td>{{ad.title}}</td>
-                    <td>
-                        <img src="{{ad.author.picture}}" class="avatar avatar-micro mr-2" alt="Avatar de {{ad.author.fullname}}"> 
-                        {{ad.author.fullname}}
-                    </td>
-                    <td class="text-center"><span class="badge badge_primary rounded">{{ad.bookings | length }}</span></td >
-                    <td class="text-center"><span class="badge badge_primary rounded">{{ad.AvgRatings | number_format(1,',','')}}</span></td>
-                    <td>
-                        <a href="{{path('admin_ads_edit',{'id' : ad.id})}}" class="btn btn-primary"><i class="fi-xnsuxl-edit-solid"></i></a> 
-                        <a href="{{path('admin_ads_delete',{'id' : ad.id})}}" class="btn btn-danger"><i class="fi-xnsuxl-trash-bin"></i></a> 
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th class="text-center">Réservation</th>
+                <th class="text-center">Note</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ad in pagination.data %}
+            <tr>
+                <td>{{ad.id}}</td>
+                <td>{{ad.title}}</td>
+                <td>
+                    <img src="{{ad.author.picture}}" class="avatar avatar-micro mr-2" alt="Avatar de {{ad.author.fullname}}"> 
+                    {{ad.author.fullname}}
+                </td>
+                <td class="text-center"><span class="badge badge_primary rounded">{{ad.bookings | length }}</span></td >
+                <td class="text-center"><span class="badge badge_primary rounded">{{ad.AvgRatings | number_format(1,',','')}}</span></td>
+                <td>
+                    <a href="{{path('admin_ads_edit',{'id' : ad.id})}}" class="btn btn-primary"><i class="fi-xnsuxl-edit-solid"></i></a> 
+                    <a href="{{path('admin_ads_delete',{'id' : ad.id})}}" class="btn btn-danger"><i class="fi-xnsuxl-trash-bin"></i></a> 
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ pagination.display }}
 </div>
 
 {% endblock %}

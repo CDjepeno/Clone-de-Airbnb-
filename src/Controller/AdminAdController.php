@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +16,15 @@ class AdminAdController extends AbstractController
     /**
      * Permet d'afficher la page de toutes les annonces
      * 
-     * @Route("/admin/ads", name="admin_ads_index")
+     * @Route("/admin/ads/{page<\d+>?1}", name="admin_ads_index")
      */
-    public function index(AdRepository $ads)
+    public function index(AdRepository $ads, $page, PaginationService $pagination)
     {
+        $pagination->setEntityclass(Ad::class)
+                    ->setPage($page);
+
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $ads->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -83,6 +87,6 @@ class AdminAdController extends AbstractController
                 "L'annonce {$ad->getTitle()} a bien été supprimée"
             );
         }
-        $this->redirectToRoute('admin_ads_index');
+        return $this->redirectToRoute('admin_ads_index');
     }
 }
