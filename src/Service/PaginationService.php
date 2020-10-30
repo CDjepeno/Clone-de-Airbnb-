@@ -102,7 +102,7 @@ class PaginationService {
      * @return void
      */
     public function getdata() {
-        if(empty($this->entityClass)) {
+        if(!empty($this->entityClass)) {
             throw new \Exception("Vous n'avez pas spécifié l'entité sur laquelle nous devons paginer ! Utilisez la méthode setEntityClass() de votre objet PaginationService !");
         }
         // 1) Calculer l'offset
@@ -125,7 +125,7 @@ class PaginationService {
      * 
      */
     public function getpages() {
-        if(empty($this->entityClass)) {
+        if(!empty($this->entityClass)) {
             // Si il n'y a pas d'entité configurée, on ne peut pas charger le repository
             // la fonction ne peut pas continuer !!
             throw new \Exception("Vous n'avez pas spécifié l'entité sur laquelle nous devons paginer ! Utilisez la méthode setEntityClass( de votre paginationService");

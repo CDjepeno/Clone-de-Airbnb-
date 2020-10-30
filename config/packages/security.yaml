@@ -35,10 +35,10 @@ security:
             form_login:
                 login_path: login_account
                 check_path: login_account
-            
+             
             logout: 
                 path: logout_account
-                target: login_account
+                target: homepage
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

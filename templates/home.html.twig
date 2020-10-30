@@ -14,100 +14,34 @@
             <a class="btn btn-primary btn-lg" href="{{ path('ads_index') }}" role="button">Voir nos annonces</a>
         </p>
     </div>
+    <pre>
+    </pre>
     <h2 class=" my-4">Nos appartements phars !</h2>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card bg-ligth mb-3">
-                <div class="card-header text-center">
-                    <p>3 chambres, <strong>49&euro / nuit</strong></p> <br>
-                    <small>Pas encore noté</small>
-                </div>
-
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement" 
-                style="height:200px; width:100%; display:block">
-
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <p>Appartement d'exception !</p>
-                    </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi harum ad non nihil atque ut nam aut, tempore possimus provident?
-                    </p>
-                    <a href="#" class="btn btn-primary">En savoir plus !</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-ligth mb-3">
-                <div class="card-header text-center">
-                    <p>3 chambres, <strong>49&euro / nuit</strong></p> <br>
-                    <small>Pas encore noté</small>
-                </div>
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement" 
-                style="height:200px; width:100%; display:block">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <p>Appartement d'exception !</p>
-                    </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi harum ad non nihil atque ut nam aut, tempore possimus provident?
-                    </p>
-                    <a href="#" class="btn btn-primary">En savoir plus !</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-ligth mb-3">
-                <div class="card-header text-center">
-                    <p>3 chambres, <strong>49&euro / nuit</strong></p> <br>
-                    <small>Pas encore noté</small>
-                </div>
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement" 
-                style="height:200px; width:100%; display:block">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <p>Appartement d'exception !</p>
-                    </h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi harum ad non nihil atque ut nam aut, tempore possimus provident?
-                    </p>
-                    <a href="#" class="btn btn-primary">En savoir plus !</a>
-                </div>
-            </div>
-        </div>
+      {% for data in ads %}
+          {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
+      {% endfor %}
     </div>
     <h2 class=" my-4">Nos propriétaire stars !</h2>
     <div class="row">
-        <div class="col">
-            <div class="card border-secondary mb-3">
-                <div class="card-body">
-                    <h4>Kevin Malgas</h4>
+        {% for user in users %}
+        {% set user = user.user %}
+            <div class="col">
+                <div class="card border-secondary mb-3">
+                    <div class="card-body">
+                        <h4>{{user.fullName}}</h4>
 
-                    <hr style="colors:white;">
+                        <hr style="colors:white;">
 
-                    <div class="card-text">
-                        <img src="http://placehold.it/64x64" alt="Avatar de kevin" class="float-left mr-3">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, laudantium.</p>
-                        <a href="" class="btn btn-primary float-right">En savoir plus !</a>
+                        <div class="card-text">
+                            <img src="{{user.picture}}" alt="Avatar de kevin" class="float-left mr-3">
+                            <p>{{user.introduction}}</p>
+                            <a href="{{path('user_show', {'slug': user.slug}) }}" class="btn btn-primary float-right">En savoir plus !</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-secondary mb-3">
-                <div class="card-body">
-                    <h4>Kevin Malags</h4>
-
-                    <hr style="colors:white;">
-
-                    <div class="card-text">
-                        <img src="http://placehold.it/64x64" alt="Avatar de kevin" class="float-left mr-3">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, laudantium.</p>
-                        <a href="" class="btn btn-primary float-right">En savoir plus !</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>    
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
