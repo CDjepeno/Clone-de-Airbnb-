@@ -1,4 +1,6 @@
 "Use strict"
+let $ = require('jquery');
+
 $('#add-image').click(function() {
     // récuperé le numéro des futurs champs qu'on va crée sous forme de nombre
     const INDEX =+$('#widgets-counter').val();

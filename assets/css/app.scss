@@ -1,15 +1,23 @@
+@import url('./bootstrap.min.css');
+
 div.container, div.container-fluid {
     margin-top: 1rem;
 }
+
 div.ad-title {
     padding: 2rem;
     background-size: cover;
     background-position: center center;
+
+    h1, p {
+        color: white;
+        text-shadow:  3px 3px 5px rgba(0,0,0,0.2);
+    }
 }
-div.ad-title h1, div.ad-title p {
-    color:white;
-    text-shadow:  3px 3px 3px rgba(0,0,0,0.5);
-} 
+
+strong {
+    font-weight: bold;
+}
 
 img.img-annonces {
     width: 20rem;
@@ -19,16 +27,16 @@ img.img-annonces {
 .avatar {
     border-radius: 50%;
     width: 7rem;
-}
 
-.avatar-micro {
-    max-width: 2rem;
-    max-height: 2rem;
-}
+    &.avatar-micro {
+        max-width: 2rem;
+        max-height: 2rem;
+    }
 
-.avatar-mini {
-    max-width: 3rem;
-    max-height: 3rem;
+    &.avatar-mini {
+        max-width: 3rem;
+        max-height: 3rem;
+    }
 }
 
 .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
