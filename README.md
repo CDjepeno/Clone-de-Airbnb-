@@ -5,9 +5,12 @@
 ![JQuery-150x150](https://user-images.githubusercontent.com/43074465/98483541-810b8d00-2209-11eb-8798-2599088d9c11.jpg)
 
 # Réalisation du clone de airbnb en Symfony(Formation by lior chamla)
-- 
--
--
--
+- Gestion des formulaires.
+- Authentification des utilisateurs.
+- Gestions des pages d'erreurs
+- Gestion des réservations.
+- Interface d'administration.
+- Mise en place d'une pagination.
+- Requêtes DQL.
 
 
