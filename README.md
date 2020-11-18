@@ -6,7 +6,7 @@
 ![icon](https://user-images.githubusercontent.com/43074465/98969194-e5329780-250e-11eb-8b4b-40c3c1edad88.png)
 
 
-# Réalisation du clone de airbnb en Symfony(Formation by lior chamla)
+# Réalisation du clone de airbnb en Symfony
 - Gestion des formulaires.
 - Authentification des utilisateurs.
 - Gestions des pages d'erreurs
