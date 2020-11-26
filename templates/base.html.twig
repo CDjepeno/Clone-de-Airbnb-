@@ -9,10 +9,9 @@
         {% block stylesheets %}{{ encore_entry_link_tags('css/app') }}{% endblock %}
     </head>
     <body>
-    
-        {% include "partials/header.html.twig" %}
+        {% include "partials/_header.html.twig" %}
         {% block body %}{% endblock %}
-        {% include "partials/footer.html.twig" %}
+        {% include "partials/_footer.html.twig" %}
 
         {{ encore_entry_script_tags('js/app') }} 
 

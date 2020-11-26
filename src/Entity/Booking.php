@@ -83,6 +83,8 @@ class Booking
      * @return boolean
      */
     public function isBookableDates() {
+        dd($this->ad);
+        // dd($this->ad->getNotAvailableDays());
         // Les dates qui sont impossible pour une réservation
         $notAvailableDays = $this->ad->getNotAvailableDays();
         

@@ -92,7 +92,8 @@ class AppFixtures extends Fixture
                 -> setCoverImage($imageR)
                 -> setRooms(mt_rand(1,8))
                 -> setAuthor($user);
-
+                
+            // Gestion des images
             for($j=1; $j<=mt_rand(2,5); $j++) {
                 $image = new Image();
 

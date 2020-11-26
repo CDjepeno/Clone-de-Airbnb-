@@ -13,8 +13,6 @@
                     {% if hasError == 1 %}
                         <div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou le mot de passe est invalide</div>
                     {% endif %}
-
-
                     <form action="{{ path('login_account') }}" method="post">
                         <div class="form-group">
                             <label for="email">Email</label>

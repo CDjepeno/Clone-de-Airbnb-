@@ -18,7 +18,7 @@ class AdminAdController extends AbstractController
      * 
      * @Route("/admin/ads/{page<\d+>?1}", name="admin_ads_index")
      */
-    public function index(AdRepository $ads, $page, PaginationService $pagination)
+    public function index($page, PaginationService $pagination)
     {
         $pagination->setEntityclass(Ad::class)
                     ->setPage($page);

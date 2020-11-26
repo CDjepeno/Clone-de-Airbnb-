@@ -6,6 +6,7 @@ use App\Entity\Ad;
 use App\Form\AdType;
 use App\Entity\Image;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
 use Monolog\Handler\HandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,18 +22,20 @@ class AdController extends AbstractController
     /**
      * Récupération de tous les appartements dans la bdd
      * 
-     * @Route("/ad", name="ads_index")
+     * @Route("/ad/{page<\d+>?1}", name="ads_index")
      * 
      * @param AdRepository $repo
      * 
      * @return Response
      */
-    public function index(AdRepository $repo)
+    public function index(AdRepository $repo, PaginationService $pagination, $page)
     {
-        $ads = $repo->findAll();
+        // $ads = $repo->findAll();
 
         return $this->render('ad/index.html.twig', [
-            'ads' => $ads,
+            'ads' =>$pagination->setEntityclass(Ad::class)
+                                ->setPage($page)
+                                ->setLimit(6)
             ]);
     }
 
@@ -124,6 +127,7 @@ class AdController extends AbstractController
             "ad" => $ad
         ]);
     }
+
 
     /**
      * Permet de supprimer une annonce
