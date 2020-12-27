@@ -38,9 +38,8 @@ class AppFixtures extends Fixture
                   ->setIntroduction($faker->sentence())
                   ->setDescription("<p>" .join("</p><p>",$faker->paragraphs(3))."</p>")
                   ->addUserRole($adminRole);
-        $manager->persist($adminUser);
+         $manager->persist($adminUser);
 
-        
         // Nous gérons les utilisateurs
         $users=[];
         $genres = ['male','female'];

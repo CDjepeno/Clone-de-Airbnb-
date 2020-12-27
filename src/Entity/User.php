@@ -98,6 +98,15 @@ class User implements UserInterface
      */
     private $comments;
 
+    
+    public function __construct()
+    {
+        $this->ads      = new ArrayCollection();
+        $this->userRole = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
+
     /**
      * Permet de retourner le nom et prénom de l'utilisateur.
      *
@@ -106,12 +115,19 @@ class User implements UserInterface
         return "{$this->firstName} {$this->lastName}";
     }
 
-    public function __construct()
+    /**
+     * Permet d'initailiser le slug !
+     * 
+     *@ORM\PrePersist
+     *@ORM\PreUpdate
+     * @return void
+     */
+    public function createSlug()
     {
-        $this->ads = new ArrayCollection();
-        $this->userRole = new ArrayCollection();
-        $this->bookings = new ArrayCollection();
-        $this->comments = new ArrayCollection();
+        if(empty($this->slug)) {
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->firstName.' '.$this->lastName);
+        }
     }
 
     public function getId(): ?int
@@ -204,21 +220,6 @@ class User implements UserInterface
     }
 
     /**
-     * Permet d'initailiser le slug !
-     * 
-     *@ORM\PrePersist
-     *@ORM\PreUpdate
-     * @return void
-     */
-    public function createSlug()
-    {
-        if(empty($this->slug)) {
-            $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->firstName.' '.$this->lastName);
-        }
-    }
-
-    /**
      * @return Collection|Ad[]
      */
     public function getAds(): Collection
@@ -266,7 +267,6 @@ class User implements UserInterface
             return $role->getTitle();
         })->toArray();
         $roles[] = "ROLE_USER";
-
         return $roles;
     }
 
@@ -277,6 +277,7 @@ class User implements UserInterface
     public function getSalt() {}
 
     public function getUsername() {
+        
         return $this->email;
     }
 

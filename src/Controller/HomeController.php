@@ -16,10 +16,8 @@ class HomeController extends AbstractController {
      *
      * @return Response
      */
-    public function home(AdRepository $adrepo, UserRepository $usrepo) {
-        $a = $adrepo->findBestAds();
-        $u = $usrepo->findBestUsers();
-      
+    public function home(AdRepository $adrepo, UserRepository $usrepo) 
+    {  
         return $this->render('home.html.twig',[
             "ads" => $adrepo->findBestAds(),
             "users" => $usrepo->findBestUsers()
