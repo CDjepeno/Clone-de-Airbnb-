@@ -36,7 +36,7 @@ Airbnb
 $ git clone https://github.com/CDjepeno/Clone-de-Airbnb-Symfony.git
 ```
 ```bash
-$ cd rent-car-Symfony
+$ cd Clone-de-Airbnb-Symfony
 ```
 ```bash
 $ composer install
