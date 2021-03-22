@@ -6,6 +6,11 @@ Airbnb
   Réalisation du clone de airbnb en Symfony
 </p>
 
+<p align="center">
+    <img src="https://img.shields.io/badge/Version%20PHP-7.3-blue" alt="php version">
+    <img src="https://img.shields.io/badge/version%20Symfony-5.1-green" alt="symfony version">
+    <img src="https://img.shields.io/badge/version%20datepicker-5.16.0-green" alt="datepicker version">
+</p>
 
 
 
@@ -17,7 +22,7 @@ Airbnb
 ![icon](https://user-images.githubusercontent.com/43074465/98969194-e5329780-250e-11eb-8b4b-40c3c1edad88.png)
 
 
-# Réalisation du clone de airbnb en Symfony
+## Features
 - Gestion des formulaires.
 - Authentification des utilisateurs.
 - Gestions des pages d'erreurs
@@ -25,5 +30,22 @@ Airbnb
 - Interface d'administration.
 - Mise en place d'une pagination.
 - Requêtes DQL.
+
+## Getting Started
+```bash
+$ git clone https://github.com/CDjepeno/Clone-de-Airbnb-Symfony.git
+```
+```bash
+$ cd rent-car-Symfony
+```
+```bash
+$ composer install
+$ npm install
+```
+```bash
+$ Symfony server-start -d
+or
+$ php -S localhost:8000 -t public
+```
 
 
