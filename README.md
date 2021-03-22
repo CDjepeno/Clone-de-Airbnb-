@@ -7,7 +7,7 @@ Airbnb
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Version%20PHP-7.3-blue" alt="php version">
+    <img src="https://img.shields.io/badge/Version%20PHP-7.2.5-blue" alt="php version">
     <img src="https://img.shields.io/badge/version%20Symfony-5.1-green" alt="symfony version">
     <img src="https://img.shields.io/badge/version%20datepicker-5.16.0-green" alt="datepicker version">
 </p>
